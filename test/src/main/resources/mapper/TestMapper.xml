@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vren.test.module.test.mapper.TestMapper">
+
+    <resultMap type="TestEntity" id="TestResult">
+        <result property="testId" column="test_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="optUserId" column="opt_user_id"/>
+        <result property="testId" column="test_id"/>
+        <result property="test2Id" column="test2_id"/>
+        <result property="money" column="money"/>
+        <result property="sex" column="sex"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="test2" column="test2_id" javaType="Test2Entity">
+            <result column="t2_user_id" property="userId"/>
+            <result property="test2Id" column="test2_id"/>
+            <result property="name" column="name"/>
+        </association>
+        <collection property="test3" javaType="List" column="test_id" notNullColumn="test3_id"
+                    resultMap="com.vren.test.module.test.mapper.Test3Mapper.Test3Result"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="TestEntity">
+        insert into test(test_id, money, sex, create_time)
+        values (replace(uuid(), '-', ''), #{money}, #{sex}, sysdate())
+    </insert>
+    <select id="find" resultType="TestEntity">
+        select test_id, money, sex, create_time, update_time
+        from test
+    </select>
+
+    <select id="select" resultMap="TestResult">
+        select t.test_id,
+        t.money,
+        t.sex,
+        t.create_time,
+        t.update_time,
+        t.opt_user_id,
+        t.user_id,
+        t2.test2_id,
+        t2.user_id as t2_user_id,
+        t2.name,
+        t3.test3_id,
+        t3.test3_name
+        from test t
+        left join test2 t2 on t.test2_id = t2.test2_id
+        left join test3 t3 on t.test_id = t3.test_id
+        <where>
+            <if test="dto.sex != null">
+                AND t.sex = #{dto.sex}
+            </if>
+            <if test="dto.testId != null and dto.testId !=''">
+                AND t.test_id = #{dto.testId}
+            </if>
+            <if test="dto.money!=null">
+                AND t.money like concat('%',#{dto.money},'%')
+            </if>
+            <if test="dto.date != null and dto.date != ''">
+                AND create_time between date_format( #{dto.date}, '%Y-%m-%d' ) AND date_format( #{dto.date},
+                '%Y-%m-%d 23:59:59' )
+            </if>
+        </where>
+    </select>
+</mapper>

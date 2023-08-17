@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vren.common.module.system.log.mapper.UserOperateLogMapper">
+
+    <resultMap type="UserOperateLogEntity" id="UserOperateLogResult">
+        <id property="logId" column="log_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="module" column="module"/>
+        <result property="content" column="content"/>
+        <result property="url" column="url"/>
+        <result property="method" column="method"/>
+        <result property="param" column="param"/>
+        <result property="result" column="result"/>
+        <result property="failReason" column="fail_reason"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="cost" column="cost"/>
+        <result property="jsonResult" column="json_result"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="UserOperateLogEntity">
+        insert into user_operate_log(log_id, user_id, username, module, content, url, method,
+                                     param, result, fail_reason, update_time, create_time, cost, json_result)
+        values (replace(uuid(), '-', ''), #{userId}, #{username}, #{module}, #{content}, #{url}, #{method},
+                #{param}, #{result}, #{failReason}, sysdate(), sysdate(), #{cost}, #{jsonResult})
+    </insert>
+    <update id="truncate">
+        truncate table user_operate_log
+    </update>
+</mapper>

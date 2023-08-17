@@ -1,0 +1,74 @@
+#网关地址
+system:
+    gateway-url: http://172.16.16.105:5555
+    profile: C:\Users\DELL\Desktop
+    image-website: http://172.16.16.105/webfile
+spring:
+    main:
+        allow-bean-definition-overriding: true
+    cloud:
+        consul:
+            port: 8500
+            host: 172.16.16.105
+            discovery:
+                service-name: ${spring.application.name}
+                prefer-ip-address: true
+                ip-address: 192.168.0.4
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 50MB
+    #redis配置
+    redis:
+        host: 172.16.16.105
+        port: 6379
+        database: 1
+    freemarker:
+        cache: false #不加载缓存
+    #rabbitMQ
+    rabbitmq:
+        host: 172.16.25.234
+        username: guest
+        password: guest
+        virtual-host: /
+    #druid
+    datasource:
+        druid:
+            #数据库地址   172.16.25.234 是mysql服务地址 newwms是数据库名称
+            username: root
+            password: 123456
+            url: jdbc:mysql://172.16.25.234/${spring.mysql.table-name}?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            max-active: 20
+            initial-size: 10
+            min-idle: 5
+            max-wait: 60000
+            pool-prepared-statements: true
+            validation-query: SELECT 1
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            max-pool-prepared-statement-per-connection-size: 20
+            use-global-data-source-stat: true
+            filters: stat
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 2000
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                reset-enable: true
+                login-username: root
+                login-password: root
+mybatis:
+    type-aliases-package: com.vren.*.module.**.domain.entity
+    mapper-locations: classpath*:mapper/**/*Mapper.xml
+    config-location: classpath:mybatis/mybatis-config.xml
+    type-handlers-package: com.vren.common.common.handler
+pagehelper:
+    helper-dialect: mysql
+    params: count=countSql
+logging:
+    level:
+        com.vren: debug
+
