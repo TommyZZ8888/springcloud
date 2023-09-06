@@ -15,7 +15,7 @@
         <setting name="logImpl" value="SLF4J"/>
         <!-- 使用驼峰命名法转换字段 -->
         <!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
-        <setting name="defaultEnumTypeHandler" value="com.vren.common.common.handler.EnumsTypeHandler"/>
+        <setting name="defaultEnumTypeHandler" value="com.zz.common.common.handler.EnumsTypeHandler"/>
     </settings>
 
 </configuration>

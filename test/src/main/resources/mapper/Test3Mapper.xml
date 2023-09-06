@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vren.test.module.test.mapper.Test3Mapper">
+<mapper namespace="com.zz.test.module.test.mapper.Test3Mapper">
 
     <resultMap type="Test3Entity" id="Test3Result">
         <result property="test3Id" column="test3_id"/>

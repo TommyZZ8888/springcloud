@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.vren.common.common.config.EnableCommonConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.zz.common.common.config.EnableCommonConfig

@@ -13,10 +13,10 @@
         <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.vren.software</groupId>
-    <artifactId>springcloud-consul</artifactId>
+    <groupId>com.zz.software</groupId>
+    <artifactId>springcloud-study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springcloud-consul</name>
+    <name>springcloud-study</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
@@ -26,7 +26,6 @@
         <feign.version>3.3.0</feign.version>
         <springfox.version>3.0.0</springfox.version>
         <jwt.version>7.9</jwt.version>
-        <consul.version>3.1.1</consul.version>
         <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
         <fastjson.version>2.0.25</fastjson.version>
         <authjwt.version>3.19.2</authjwt.version>
@@ -107,21 +106,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-            <version>${consul.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-cloud-loadbalancer</artifactId>
-                    <groupId>org.springframework.cloud</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-                    <groupId>org.springframework.cloud</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- pagehelper 分页插件 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -190,6 +174,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>2021.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>2021.1</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -224,7 +218,7 @@
                             <artifactId>nothing</artifactId>
                         </include>
                         <include>
-                            <groupId>com.vren.common</groupId>
+                            <groupId>com.zz.common</groupId>
                             <artifactId>common</artifactId>
                         </include>
                     </includes>
@@ -262,7 +256,7 @@
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
-                            <excludeGroupIds>com.vren</excludeGroupIds>
+                            <excludeGroupIds>com.zz</excludeGroupIds>
                         </configuration>
                     </execution>
                 </executions>
