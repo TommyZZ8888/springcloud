@@ -1,16 +1,21 @@
 server:
-    port: 9001
+    port: 9091
 spring:
+    profiles:
+        active: common
     application:
-        name: springcloud-gateway
+        name: iot-usercenter
     cloud:
         nacos:
             discovery:
                 server-addr: 127.0.0.1:8848
             config:
                 server-addr: 127.0.0.1:8848
-useLocalCache: false
-
-
+                file-extension: yaml  # 必须修改成yaml
+                group: DEFAULT_GROUP  # 缺省即可
+                prefix: ${spring.application.name} # 缺省即可
+user:
+    name: lisi-application
+    age: 19
 
 

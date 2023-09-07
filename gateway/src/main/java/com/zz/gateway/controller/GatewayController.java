@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class GatewayController {
 
-   @Value("${useLocalCache}")
-    private boolean useLocalCache;
+    //引入@RefreshScope注解，值从配置文件获取
+    @Value("${user.name}")
+    private String name;
+    @Value("${user.age}")
+    private String age;
 
-    @RequestMapping("/get")
-    public boolean get() {
-        return useLocalCache;
-    }
+    //登录
+    @RequestMapping("/login")
+    public String login(){
+
+        String msg =" I am " + name + " , I am " + age + " years old!";
+        System.out.println(msg);
+        return msg;}
 }
