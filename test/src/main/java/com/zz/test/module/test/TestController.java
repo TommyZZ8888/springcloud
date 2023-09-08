@@ -11,6 +11,8 @@ import com.zz.test.module.test.mapper.TestMapper;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequestMapping("/test")
 @OperateLog
 @NoNeedLogin
+@RefreshScope
 public class TestController extends BaseController {
 
     @Autowired
@@ -63,5 +66,17 @@ public class TestController extends BaseController {
         userInfoEntities.add(testEntity);
         return userInfoEntities;
     }
+    //引入@RefreshScope注解，值从配置文件获取
+    @Value("${user.name}")
+    private String name;
+    @Value("${user.age}")
+    private String age;
 
+    //登录
+    @RequestMapping("/login")
+    public String login(){
+
+        String msg =" I am " + name + " , I am " + age + " years old!";
+        System.out.println(msg);
+        return msg;}
 }

@@ -1,9 +1,0 @@
-spring:
-    mysql:
-        table-name: test
-    profiles:
-        include: common
-    application:
-        name: test
-server:
-    port: 8099
