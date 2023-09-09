@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @Describtion: TestService
+ * @Describtion: TestFeign
  * @Author: 张卫刚
  * @Date: 2023/9/9 9:43
  */
-@FeignClient(value = "test")
-public interface TestService {
+@FeignClient(value = "127.0.0.1:7002")
+public interface TestFeign {
 
-    @RequestMapping(value = "/test/login", method = RequestMethod.GET)
-     String login();
+    @RequestMapping(value = "/test/login")
+    String login();
 }

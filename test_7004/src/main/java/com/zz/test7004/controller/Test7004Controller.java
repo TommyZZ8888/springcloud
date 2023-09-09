@@ -1,8 +1,7 @@
-package com.zz.test_7003.controller;
+package com.zz.test7004.controller;
 
 import com.zz.common.common.annotation.NoNeedLogin;
 import com.zz.common.common.annotation.OperateLog;
-import com.zz.common.common.core.controller.BaseController;
 import com.zz.feign.test.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @OperateLog
 @NoNeedLogin
 @RefreshScope
-public class Test7003Controller  {
+public class Test7004Controller {
 
 
     @Autowired

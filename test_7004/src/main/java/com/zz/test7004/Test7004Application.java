@@ -1,14 +1,16 @@
-package com.zz.test;
+package com.zz.test7004;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+
 @EnableFeignClients(basePackages ={"com.zz.common.module", "com.zz.feign"})
-public class TestApplication {
+@SpringBootApplication
+public class Test7004Application {
+
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class);
+        SpringApplication.run(Test7004Application.class, args);
     }
+
 }

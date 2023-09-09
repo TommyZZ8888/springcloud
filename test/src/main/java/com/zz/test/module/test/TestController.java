@@ -5,6 +5,7 @@ import com.zz.common.common.annotation.OperateLog;
 import com.zz.common.common.core.controller.BaseController;
 import com.zz.common.common.core.domain.PageResult;
 import com.zz.common.common.core.domain.ResponseResult;
+import com.zz.feign.test.TestService;
 import com.zz.test.module.test.domain.dto.TestDTO;
 import com.zz.test.module.test.domain.entity.TestEntity;
 import com.zz.test.module.test.mapper.TestMapper;
@@ -66,6 +67,7 @@ public class TestController extends BaseController {
         userInfoEntities.add(testEntity);
         return userInfoEntities;
     }
+
     //引入@RefreshScope注解，值从配置文件获取
     @Value("${user.name}")
     private String name;
@@ -74,9 +76,20 @@ public class TestController extends BaseController {
 
     //登录
     @RequestMapping("/login")
-    public String login(){
-
-        String msg =" I am " + name + " , I am " + age + " years old!";
+    public String login() {
+        String msg = " I am " + name + " , I am " + age + " years old!";
         System.out.println(msg);
-        return msg;}
+        return msg;
+    }
+
+
+    @Autowired
+    private TestService testService;
+
+    @RequestMapping(value = "/loginFeignTest")
+    public String loginFeign() {
+        String msg = testService.get();
+        System.out.println(msg);
+        return msg;
+    }
 }

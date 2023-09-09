@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
 @ComponentScan("com.zz")
-@EnableFeignClients("com.zz.common.module")
 @MapperScan("com.zz.*.module.**.mapper")
 @EnableAsync
 @EnableDiscoveryClient

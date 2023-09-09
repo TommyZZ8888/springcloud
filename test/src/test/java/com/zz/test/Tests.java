@@ -1,9 +1,6 @@
 package com.zz.test;
 
-import com.zz.common.common.utils.ApplicationContextUtils;
-import com.zz.common.module.identity.user.UserService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;

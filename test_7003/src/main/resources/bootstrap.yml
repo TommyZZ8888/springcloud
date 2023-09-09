@@ -1,8 +1,8 @@
 server:
-    port: 7002
+    port: 7003
 spring:
     application:
-        name: test
+        name: test7003
     profiles:
         active: nacos
         include: common
