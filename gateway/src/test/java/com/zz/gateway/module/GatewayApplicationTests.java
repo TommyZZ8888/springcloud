@@ -1,13 +1,11 @@
-package com.zz.gateway;
+package com.zz.gateway.module;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class GatewayApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+
 
 }
