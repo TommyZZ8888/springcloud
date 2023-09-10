@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.RequestContextFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
+
 import javax.annotation.PostConstruct;
 
 /**
@@ -16,11 +17,11 @@ import javax.annotation.PostConstruct;
 public class ThreadContextInheritableConfig {
 
     @Autowired
-    private RequestContextFilter requestContextFilter;
+    private RequestContextTestFilter requestContextFilter;
 
 
     @Autowired
-    private DispatcherServlet dispatcherServlet;
+    private DispatcherTestServlet dispatcherServlet;
 
     @PostConstruct
     public void init() {

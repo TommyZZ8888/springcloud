@@ -74,21 +74,10 @@ public class TestController extends BaseController {
     @Value("${user.age}")
     private String age;
 
-    //登录
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @NoNeedLogin
     public String login() {
         String msg = " I am " + name + " , I am " + age + " years old!";
-        System.out.println(msg);
-        return msg;
-    }
-
-
-    @Autowired
-    private TestService testService;
-
-    @RequestMapping(value = "/loginFeignTest")
-    public String loginFeign() {
-        String msg = testService.get();
         System.out.println(msg);
         return msg;
     }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,7 @@ public class UrlFilter implements Filter {
             chain.doFilter(requestCacheWrapper, response);
         }
     }
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

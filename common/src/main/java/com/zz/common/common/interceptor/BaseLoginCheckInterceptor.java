@@ -67,57 +67,57 @@ public class BaseLoginCheckInterceptor implements HandlerInterceptor {
         }
 
         //放行的Uri前缀
-        String uri = request.getRequestURI();
-        String contextPath = request.getContextPath();
-        String target = uri.replaceFirst(contextPath, "");
-        if (target.startsWith("/swagger")) {
-            return true;
-        }
-        String token = request.getHeader(LoginServer.AUTH_HEADER_KEY);
-        if (StringUtils.isBlank(token)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return false;
-        }
-        if (!token.startsWith(LoginServer.TOKEN_PREFIX)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return false;
-        }
-        UserInfoEntity userInfoEntity;
-        try {
-            final String authToken = token.replace(LoginServer.TOKEN_PREFIX, "");
-            userInfoEntity = loginServer.checkToken(authToken);
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            this.outputResult(response, "UNAUTHORIZED " + e.getMessage());
-            return false;
-        }
-        UserInfoEntity userInfo = null;
-        try {
-            userInfo = userService.getUserInfoByID(userInfoEntity.getUserId());
-        } catch (FeignException e) {
-            if (e.status() == HttpServletResponse.SC_UNAUTHORIZED) {
-                this.outputResult(response, "UNAUTHORIZED");
-                return false;
-            }
-        }
-        if (userInfo == null) {
-            this.outputResult(response, "用户不存在");
-            return false;
-        }
-        List<ModuleListEntity> roleLinkModuleList = roleService.getRoleLinkModuleList(userInfo.getRoleId());
-        userInfo.setModuleList(roleLinkModuleList);
-        userInfo.setModuleCodeList(roleLinkModuleList.stream().map(ModuleListEntity::getModuleCode).collect(Collectors.toList()));
-        ThreadLocalUser.set(userInfo);
-        //根据不同模块的不同逻辑 自定义拦截器
-        if (customerLoginCheckInterceptor != null) {
-            try {
-                customerLoginCheckInterceptor.interceptor();
-            } catch (ErrorException e) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                this.outputResult(response, e.getMessage());
-                return false;
-            }
-        }
+//        String uri = request.getRequestURI();
+//        String contextPath = request.getContextPath();
+//        String target = uri.replaceFirst(contextPath, "");
+//        if (target.startsWith("/swagger")) {
+//            return true;
+//        }
+//        String token = request.getHeader(LoginServer.AUTH_HEADER_KEY);
+//        if (StringUtils.isBlank(token)) {
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//            return false;
+//        }
+//        if (!token.startsWith(LoginServer.TOKEN_PREFIX)) {
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//            return false;
+//        }
+//        UserInfoEntity userInfoEntity;
+//        try {
+//            final String authToken = token.replace(LoginServer.TOKEN_PREFIX, "");
+//            userInfoEntity = loginServer.checkToken(authToken);
+//        } catch (Exception e) {
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//            this.outputResult(response, "UNAUTHORIZED " + e.getMessage());
+//            return false;
+//        }
+//        UserInfoEntity userInfo = null;
+//        try {
+//            userInfo = userService.getUserInfoByID(userInfoEntity.getUserId());
+//        } catch (FeignException e) {
+//            if (e.status() == HttpServletResponse.SC_UNAUTHORIZED) {
+//                this.outputResult(response, "UNAUTHORIZED");
+//                return false;
+//            }
+//        }
+//        if (userInfo == null) {
+//            this.outputResult(response, "用户不存在");
+//            return false;
+//        }
+//        List<ModuleListEntity> roleLinkModuleList = roleService.getRoleLinkModuleList(userInfo.getRoleId());
+//        userInfo.setModuleList(roleLinkModuleList);
+//        userInfo.setModuleCodeList(roleLinkModuleList.stream().map(ModuleListEntity::getModuleCode).collect(Collectors.toList()));
+//        ThreadLocalUser.set(userInfo);
+//        //根据不同模块的不同逻辑 自定义拦截器
+//        if (customerLoginCheckInterceptor != null) {
+//            try {
+//                customerLoginCheckInterceptor.interceptor();
+//            } catch (ErrorException e) {
+//                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                this.outputResult(response, e.getMessage());
+//                return false;
+//            }
+//        }
         return true;
     }
 

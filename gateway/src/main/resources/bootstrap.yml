@@ -5,6 +5,7 @@ spring:
         name: gateway
     main:
         allow-bean-definition-overriding: true
+        web-application-type: reactive
     servlet:
         multipart:
             max-file-size: 10MB
@@ -48,18 +49,23 @@ spring:
                 login-password: root
     cloud:
         gateway:
-            discovery:
-                locator:
-                    enabled: true
-                    lowerCaseServiceId: true
-#            routes:
-#                - id: test
-#                  uri: lb://test
-#                  predicates:
-#                     - Path=/test/**
+            routes:
+                - id: test
+                  uri: lb://test
+                  predicates:
+                     - Path=/api/test/test/**
+
+                - id: test7003
+                  uri: lb://test7003
+                  predicates:
+                    - Path=/api/test7003/test7003/**
+            default-filters:
+              - StripPrefix=2
         nacos:
             discovery:
                 server-addr: 127.0.0.1:8848
+                namespace: 100513ae-388a-43c2-a181-7fbb37a80a21
+                group: springcloud
 
 user:
     name: zhangsan

@@ -53,4 +53,10 @@ pagehelper:
 logging:
     level:
         com.zz: debug
+system:
+    gatewayUrl: http://127.0.0.1:7001
+feign:
+    circuitbreaker:
+        enabled: true
+
 

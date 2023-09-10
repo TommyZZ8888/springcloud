@@ -1,9 +1,6 @@
 package com.zz.gateway.module.controller;
 
-import com.zz.common.common.annotation.NoNeedLogin;
-import com.zz.common.common.annotation.OperateLog;
-import com.zz.feign.test.TestService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2023/9/6 21:45
  */
 @RestController
-@RequestMapping("/config")
-@OperateLog
-@NoNeedLogin
+@RequestMapping("/gateway")
 @RefreshScope
 public class GatewayController {
 
