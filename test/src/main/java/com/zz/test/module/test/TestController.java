@@ -9,6 +9,8 @@ import com.zz.feign.test.TestService;
 import com.zz.test.module.test.domain.dto.TestDTO;
 import com.zz.test.module.test.domain.entity.TestEntity;
 import com.zz.test.module.test.mapper.TestMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import java.util.List;
 @OperateLog
 @NoNeedLogin
 @RefreshScope
+@Api("test")
 public class TestController extends BaseController {
 
     @Autowired
@@ -76,6 +79,7 @@ public class TestController extends BaseController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @NoNeedLogin
+    @ApiOperation("测试接口")
     public String login() {
         String msg = " I am " + name + " , I am " + age + " years old!";
         System.out.println(msg);

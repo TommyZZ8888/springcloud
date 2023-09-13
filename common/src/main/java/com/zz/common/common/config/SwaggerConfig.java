@@ -21,8 +21,8 @@ import java.util.List;
 /**
  * @author Vren
  */
-@Configuration
-@EnableOpenApi
+//@Configuration
+//@EnableOpenApi
 public class SwaggerConfig {
     @Value("${spring.application.name}")
     private String applicationName;
@@ -34,7 +34,7 @@ public class SwaggerConfig {
                 .securityContexts(List.of(securityContext()))
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.com.vren." + applicationName + ".module"))
+                .apis(RequestHandlerSelectors.basePackage("com.zz." + applicationName + ".module"))
                 .paths(PathSelectors.any()).build();
     }
 

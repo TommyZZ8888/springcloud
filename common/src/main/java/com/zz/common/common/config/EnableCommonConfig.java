@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @Configuration
 @ComponentScan("com.zz")
@@ -16,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 @EnableDiscoveryClient
 @Slf4j
+@EnableOpenApi
 public class EnableCommonConfig implements EnvironmentAware {
     @Override
     public void setEnvironment(Environment environment) {

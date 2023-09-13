@@ -53,12 +53,12 @@ spring:
                 - id: test
                   uri: lb://test
                   predicates:
-                     - Path=/api/test/test/**
+                     - Path=/api/test/**
 
                 - id: test7003
                   uri: lb://test7003
                   predicates:
-                    - Path=/api/test7003/test7003/**
+                    - Path=/api/test7003/**
             default-filters:
               - StripPrefix=2
         nacos:
@@ -70,3 +70,13 @@ spring:
 user:
     name: zhangsan
     age: 19
+#swagger 配置
+
+swagger:
+    title: 测试界面
+    version: 1.0.0
+    license: Apache 2.0
+    basePackage: com.zz.gateway
+    contactName: jiadong.GUO
+    enabled: true
+
