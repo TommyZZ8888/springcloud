@@ -1,4 +1,4 @@
-package com.zz.test.module.test;
+package com.zz.test.module.test.controller;
 
 import com.zz.common.common.annotation.NoNeedLogin;
 import com.zz.common.common.annotation.OperateLog;
