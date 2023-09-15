@@ -8,11 +8,15 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface TestMapper {
+public interface TestMapper{
 
     int insert(TestEntity testEntity);
 
     List<TestEntity> find(String id);
 
     List<TestEntity> select(@Param("dto") TestDTO dto);
+
+    TestEntity selectById(String id);
+
+    int update(@Param("dto") TestDTO dto);
 }

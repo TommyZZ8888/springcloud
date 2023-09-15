@@ -27,6 +27,23 @@
         insert into test(test_id, money, sex, create_time)
         values (replace(uuid(), '-', ''), #{money}, #{sex}, sysdate())
     </insert>
+
+    <update id="update">
+        update test
+        <set>
+            <if test="dto.sex != null">
+                sex = #{dto.sex},
+            </if>
+            <if test="dto.money != null">
+                money=#{dto.money},
+            </if>
+            <if test="dto.date != null and dto.date!=''">
+                create_time = #{dto.date}
+            </if>
+        </set>
+        <where>test_id = #{dto.testId}</where>
+    </update>
+
     <select id="find" resultType="TestEntity">
         select test_id, money, sex, create_time, update_time
         from test
@@ -63,5 +80,11 @@
                 '%Y-%m-%d 23:59:59' )
             </if>
         </where>
+    </select>
+
+    <select id="selectById" resultType="com.zz.test.module.test.domain.entity.TestEntity">
+        select test_id, money, sex, create_time, update_time
+        from test
+        where test.test.test_id = #{id}
     </select>
 </mapper>

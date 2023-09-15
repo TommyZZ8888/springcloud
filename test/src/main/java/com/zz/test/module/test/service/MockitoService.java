@@ -1,9 +1,14 @@
 package com.zz.test.module.test.service;
 
+import com.zz.common.common.utils.BeanUtils;
 import com.zz.common.common.utils.StringUtils;
+import com.zz.test.module.test.domain.dto.TestDTO;
 import com.zz.test.module.test.domain.entity.TestEntity;
+import com.zz.test.module.test.mapper.TestMapper;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
@@ -17,17 +22,20 @@ import java.util.ArrayList;
 @Service
 public class MockitoService {
 
+    @Autowired
+    private TestMapper testMapper;
 
 
-    public void getByNameAndPhone(String name,String phone){
+    public void updateById(String id) {
+        TestEntity testEntity = testMapper.selectById(id);
+        if (Comm)
+        testEntity.setOptUserId("aaa");
+        TestDTO testDTO = BeanUtils.copy(testEntity, TestDTO.class);
+        int update = testMapper.update(testDTO);
+    }
 
-        if (StringUtils.isBlank(name)){
-            throw new ValidationException("name is blank");
-        }
 
-        if (StringUtils.isBlank(phone)){
-            throw new ValidationException("phone is blank");
-        }
-
+    public int add(int a, int b) {
+        return a + b;
     }
 }
