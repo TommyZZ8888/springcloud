@@ -26,12 +26,14 @@ public class MockitoService {
     private TestMapper testMapper;
 
 
-    public void updateById(String id) {
+    public int updateById(String id) {
         TestEntity testEntity = testMapper.selectById(id);
-        if (Comm)
+        if (StringUtils.isNull(testEntity)){
+            throw new ValidationException("查无此人");
+        }
         testEntity.setOptUserId("aaa");
         TestDTO testDTO = BeanUtils.copy(testEntity, TestDTO.class);
-        int update = testMapper.update(testDTO);
+        return testMapper.update(testDTO);
     }
 
 
