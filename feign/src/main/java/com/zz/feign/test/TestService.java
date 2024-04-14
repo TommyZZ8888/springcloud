@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @Author: 张卫刚
  * @Date: 2023/9/9 9:48
  */
-@Service
+@Service("feignTestService")
 public class TestService {
 
     @Autowired

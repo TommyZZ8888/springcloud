@@ -8,8 +8,9 @@ spring:
         include: common
     table: test
 user:
-    name: zhangsan
+    name: tommy
     age: 19
+    sex: hh
 swagger:
     enabled: true
     groupName: test
@@ -23,7 +24,6 @@ swagger:
         name: 张卫刚
         url: 138138138138
         email: 1950442495@qq.com
-
 
 
 

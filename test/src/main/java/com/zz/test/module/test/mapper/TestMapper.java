@@ -19,4 +19,6 @@ public interface TestMapper{
     TestEntity selectById(String id);
 
     int update(@Param("dto") TestDTO dto);
+
+    int updateBatch(@Param("list") List<TestEntity> list);
 }

@@ -1,0 +1,24 @@
+spring:
+    cloud:
+        nacos:
+            discovery:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                group: ${spring.cloud.nacos.config.group-name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+            config:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                file-extension: yaml  # 必须修改成yaml
+                group: springcloud
+                prefix: ${spring.application.name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+                refresh-enabled: true # 动态刷新
+                enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+                shared-configs: # 共享配置
+                  - data-id: common.yaml    #nacos界面dataid要加yaml后缀，不然识别不到
+                    group: springcloud
+                    refresh: true
+
+            server-addr: 127.0.0.1:8848
+

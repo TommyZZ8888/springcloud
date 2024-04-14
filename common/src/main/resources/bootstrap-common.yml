@@ -42,11 +42,21 @@ spring:
                 reset-enable: true
                 login-username: root
                 login-password: root
-mybatis:
+#mybatis:
+#    type-aliases-package: com.zz.*.module.**.domain.entity
+#    mapper-locations: classpath*:mapper/**/*Mapper.xml
+#    config-location: classpath:mybatis/mybatis-config.xml
+#    type-handlers-package: com.zz.common.common.handler
+mybatis-plus:
     type-aliases-package: com.zz.*.module.**.domain.entity
-    mapper-locations: classpath*:mapper/**/*Mapper.xml
+    mapper-locations: classpath:mapper/**/*Mapper.xml
     config-location: classpath:mybatis/mybatis-config.xml
     type-handlers-package: com.zz.common.common.handler
+    global-config:
+        db-config:
+            logic-delete-field: isDeleted
+            logic-delete-value: 1
+            logic-not-delete-value: 0
 pagehelper:
     helper-dialect: mysql
     params: count=countSql

@@ -8,6 +8,8 @@
         <module>test</module>
         <module>gateway</module>
         <module>feign</module>
+        <module>test_7003</module>
+        <module>test_7004</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -94,6 +96,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -1,14 +1,15 @@
 package com.zz.test.module.test.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.zz.common.common.annotation.NoNeedLogin;
 import com.zz.common.common.annotation.OperateLog;
 import com.zz.common.common.core.controller.BaseController;
 import com.zz.common.common.core.domain.PageResult;
 import com.zz.common.common.core.domain.ResponseResult;
-import com.zz.feign.test.TestService;
 import com.zz.test.module.test.domain.dto.TestDTO;
 import com.zz.test.module.test.domain.entity.TestEntity;
 import com.zz.test.module.test.mapper.TestMapper;
+import com.zz.test.module.test.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.joda.money.CurrencyUnit;
@@ -31,6 +32,9 @@ public class TestController extends BaseController {
 
     @Autowired
     private TestMapper testMapper;
+
+    @Autowired
+    private TestService testService;
 
     @GetMapping("/test")
     public ResponseResult<PageResult<TestEntity>> test(@RequestBody TestDTO dto) {
@@ -76,13 +80,22 @@ public class TestController extends BaseController {
     private String name;
     @Value("${user.age}")
     private String age;
+    @Value(value = "${user.sex}")
+    private String sex;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @NoNeedLogin
     @ApiOperation("测试接口")
     public String login() {
-        String msg = " I am " + name + " , I am " + age + " years old!";
+        String msg = " I am " + name + " , I am " + age + " years old!,sex: "+sex;
         System.out.println(msg);
         return msg;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @NoNeedLogin
+    public String update() {
+       testService.update();
+       return "ok";
     }
 }

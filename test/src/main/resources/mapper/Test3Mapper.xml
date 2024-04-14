@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zz.test.module.test.mapper.Test3Mapper">
 
-    <resultMap type="Test3Entity" id="Test3Result">
+    <resultMap type="com.zz.test.module.test.domain.entity.Test3Entity" id="Test3Result">
         <result property="test3Id" column="test3_id"/>
         <result property="testId" column="test_id"/>
         <result property="test3Name" column="test3_name"/>
