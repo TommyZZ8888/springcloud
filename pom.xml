@@ -10,6 +10,7 @@
         <module>feign</module>
         <module>test_7003</module>
         <module>test_7004</module>
+        <module>auth-9999</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -223,6 +224,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.1.2</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
