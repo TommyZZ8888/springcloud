@@ -1,6 +1,5 @@
 package com.zz.test.module.test.controller;
 
-import com.zz.common.common.annotation.NoNeedLogin;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/es")
-@NoNeedLogin
 @Api("es")
 public class ESController {
 

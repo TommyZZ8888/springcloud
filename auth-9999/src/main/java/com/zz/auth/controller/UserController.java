@@ -1,13 +1,16 @@
 package com.zz.auth.controller;
 
-import com.zz.auth.dao.UserMapper;
-import com.zz.common.module.identity.user.domain.entity.User;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.KeyPair;
 import java.security.Principal;
+import java.security.interfaces.RSAPublicKey;
+import java.util.Map;
 
 /**
  * @Describtion: UserController
@@ -18,14 +21,6 @@ import java.security.Principal;
 @RequestMapping("/user")
 public class UserController {
 
-     @Autowired
-    private UserMapper userMapper;
-
-
-     @GetMapping("/getByName")
-     public User getByName(String name){
-         return userMapper.selectByUserName(name);
-     }
 
     /**
      * 获取授权的用户信息

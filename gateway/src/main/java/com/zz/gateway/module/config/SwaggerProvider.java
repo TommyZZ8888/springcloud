@@ -19,8 +19,8 @@ import java.util.List;
  */
 
 
-@Primary
-@Component
+//@Primary
+//@Component
 public class SwaggerProvider implements SwaggerResourcesProvider {
 
     /**

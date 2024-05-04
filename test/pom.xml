@@ -16,13 +16,6 @@
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.zz.software</groupId>
-            <artifactId>feign</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-
 <!--&lt;!&ndash;        单元测试&ndash;&gt;-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -44,6 +37,10 @@
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy-agent</artifactId>
             <version>1.14.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
         </dependency>
     </dependencies>
 

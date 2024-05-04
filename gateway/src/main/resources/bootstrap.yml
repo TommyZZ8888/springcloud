@@ -14,7 +14,7 @@ spring:
     redis:
         host: 127.0.0.1
         port: 6379
-        database: 1
+        database: 0
     freemarker:
         cache: false #不加载缓存
 
@@ -53,19 +53,46 @@ spring:
                 - id: test
                   uri: lb://test
                   predicates:
-                     - Path=/api/test/**
-
+                     - Path=/test/**
+                  filters:
+                    - StripPrefix=1
+                - id: auth
+                  uri: lb://auth
+                  predicates:
+                    - Path=/api/auth/**
+                  filters:
+                    - StripPrefix=1
                 - id: test7003
                   uri: lb://test7003
                   predicates:
                     - Path=/api/test7003/**
-            default-filters:
-              - StripPrefix=2
         nacos:
             discovery:
-                server-addr: 127.0.0.1:8848
-                namespace: 100513ae-388a-43c2-a181-7fbb37a80a21
+                server-addr: ${spring.cloud.nacos.server-addr}
+                group: ${spring.cloud.nacos.config.group-name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+            config:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                file-extension: yaml  # 必须修改成yaml
                 group: springcloud
+                prefix: ${spring.application.name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+                refresh-enabled: true # 动态刷新
+                enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+                shared-configs: # 共享配置
+                    -   data-id: common.yaml    #nacos界面dataid要加yaml后缀，不然识别不到
+                        group: springcloud
+                        refresh: true
+
+            server-addr: 127.0.0.1:8848
+
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: http://127.0.0.1:9999/rsa/publicKey #配置RSA的公钥访问地址
 
 user:
     name: zhangsan
@@ -79,4 +106,7 @@ swagger:
     basePackage: com.zz.gateway
     contactName: jiadong.GUO
     enabled: true
-
+secure:
+    ignore:
+        urls:
+            - /auth/oauth/token

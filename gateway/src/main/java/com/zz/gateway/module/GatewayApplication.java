@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages ={"com.zz.common.module", "com.zz.feign"})
+@EnableFeignClients
 public class GatewayApplication {
 
     public static void main(String[] args) {

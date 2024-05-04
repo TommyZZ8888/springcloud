@@ -1,19 +1,13 @@
 package com.zz.test.module.test.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.zz.common.common.annotation.NoNeedLogin;
-import com.zz.common.common.annotation.OperateLog;
-import com.zz.common.common.core.controller.BaseController;
-import com.zz.common.common.core.domain.PageResult;
-import com.zz.common.common.core.domain.ResponseResult;
-import com.zz.test.module.test.domain.dto.TestDTO;
-import com.zz.test.module.test.domain.entity.TestEntity;
+
+import com.zz.test.module.test.domain.dto.UserDTO;
+import com.zz.test.module.test.holder.LoginUserHolder;
 import com.zz.test.module.test.mapper.TestMapper;
 import com.zz.test.module.test.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.joda.money.CurrencyUnit;
-import org.joda.money.Money;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -23,12 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/test")
-@OperateLog
-@NoNeedLogin
+@RequestMapping
+
 @RefreshScope
 @Api("test")
-public class TestController extends BaseController {
+public class TestController {
 
     @Autowired
     private TestMapper testMapper;
@@ -36,55 +29,28 @@ public class TestController extends BaseController {
     @Autowired
     private TestService testService;
 
-    @GetMapping("/test")
-    public ResponseResult<PageResult<TestEntity>> test(@RequestBody TestDTO dto) {
-        startPage();
-        List<TestEntity> testEntities = testMapper.find(null);
-        return getDataTable(testEntities);
+    @Autowired
+    private LoginUserHolder loginUserHolder;
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
+    @GetMapping("/currentUser")
+    public UserDTO currentUser() {
+        return loginUserHolder.getCurrentUser();
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.POST)
-    public ResponseResult<PageResult<TestEntity>> select(@RequestBody TestDTO dto) {
-        startPage();
-        List<TestEntity> testEntities = testMapper.select(dto);
-        return getDataTable(testEntities);
-    }
-
-    @PostMapping("/test2")
-    public ResponseResult<Boolean> test2(@RequestBody TestEntity testEntity) {
-        testMapper.insert(testEntity);
-        return ResponseResult.success("操作成功");
-    }
-
-    @GetMapping("/test1")
-    public ResponseResult<List<TestEntity>> test1() {
-        TestEntity testEntity = new TestEntity();
-        testEntity.setMoney(Money.of(CurrencyUnit.of("CNY"), 100));
-        ArrayList<TestEntity> userInfoEntities = new ArrayList<>();
-        userInfoEntities.add(testEntity);
-        return ResponseResult.success("成功1", userInfoEntities);
-    }
-
-
-    @PostMapping("/returnTest")
-    public List<TestEntity> returnTest() {
-        TestEntity testEntity = new TestEntity();
-        testEntity.setMoney(Money.of(CurrencyUnit.of("CNY"), 100));
-        ArrayList<TestEntity> userInfoEntities = new ArrayList<>();
-        userInfoEntities.add(testEntity);
-        return userInfoEntities;
-    }
 
     //引入@RefreshScope注解，值从配置文件获取
-    @Value("${user.name}")
+//    @Value("${user.name}")
     private String name;
-    @Value("${user.age}")
+//    @Value("${user.age}")
     private String age;
-    @Value(value = "${user.sex}")
+//    @Value(value = "${user.sex}")
     private String sex;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @NoNeedLogin
     @ApiOperation("测试接口")
     public String login() {
         String msg = " I am " + name + " , I am " + age + " years old!,sex: "+sex;
@@ -93,7 +59,6 @@ public class TestController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @NoNeedLogin
     public String update() {
        testService.update();
        return "ok";

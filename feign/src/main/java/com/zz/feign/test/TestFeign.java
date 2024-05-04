@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Author: 张卫刚
  * @Date: 2023/9/9 9:43
  */
-@FeignClient(value = "test",url = "127.0.0.1:7002")
-public interface TestFeign {
-
-    @RequestMapping(value = "/api/test/test/login",method = RequestMethod.POST)
-    String login();
-}
+//@FeignClient(value = "test",url = "127.0.0.1:7002")
+//public interface TestFeign {
+//
+//    @RequestMapping(value = "/api/test/test/login",method = RequestMethod.POST)
+//    String login();
+//}
