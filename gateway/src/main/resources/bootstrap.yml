@@ -50,22 +50,22 @@ spring:
     cloud:
         gateway:
             routes:
-                - id: test
-                  uri: lb://test
-                  predicates:
-                     - Path=/test/**
-                  filters:
-                    - StripPrefix=1
-                - id: auth
-                  uri: lb://auth
-                  predicates:
-                    - Path=/api/auth/**
-                  filters:
-                    - StripPrefix=1
-                - id: test7003
-                  uri: lb://test7003
-                  predicates:
-                    - Path=/api/test7003/**
+              - id: test
+                uri: lb://test
+                predicates:
+                   - Path=/test/**
+                filters:
+                  - StripPrefix=1
+              - id: auth
+                uri: lb://auth
+                predicates:
+                  - Path=/api/auth/**
+                filters:
+                  - StripPrefix=1
+              - id: test7003
+                uri: lb://test7003
+                predicates:
+                  - Path=/test7003/**
         nacos:
             discovery:
                 server-addr: ${spring.cloud.nacos.server-addr}
@@ -81,18 +81,13 @@ spring:
                 enable-remote-sync-config: true
                 group-name: springcloud
                 namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
-                shared-configs: # 共享配置
-                    -   data-id: common.yaml    #nacos界面dataid要加yaml后缀，不然识别不到
-                        group: springcloud
-                        refresh: true
-
             server-addr: 127.0.0.1:8848
 
     security:
         oauth2:
             resourceserver:
                 jwt:
-                    jwk-set-uri: http://127.0.0.1:9999/rsa/publicKey #配置RSA的公钥访问地址
+                    jwk-set-uri: http://127.0.0.1:9999/rsa/publicKey
 
 user:
     name: zhangsan

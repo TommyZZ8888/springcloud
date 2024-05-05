@@ -5,9 +5,10 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.zz.common.common.annotation.EnableUserInfo;
 import com.zz.common.common.annotation.UserInfo;
+import com.zz.common.common.core.domain.UserInfoEntity;
 import com.zz.common.common.utils.ApplicationContextUtils;
-import com.zz.common.module.identity.user.UserService;
-import com.zz.common.module.identity.user.domain.entity.UserInfoEntity;
+import com.zz.feign.test.TestService;
+
 
 import java.lang.reflect.Field;
 
@@ -15,10 +16,10 @@ public class UserInfoSerializer {
 
     public static class JacksonSerializer extends JsonSerializer<Object> {
 
-        private UserService userService;
+        private TestService userService;
 
         public JacksonSerializer() {
-            userService = ApplicationContextUtils.getBean(UserService.class);
+            userService = ApplicationContextUtils.getBean(TestService.class);
         }
 
         @Override
@@ -46,8 +47,8 @@ public class UserInfoSerializer {
                     if (fieldValue == null || "".equals(fieldValue)) {
                         continue;
                     }
-                    UserInfoEntity userInfoEntity = userService.getUserInfoByIDCache(fieldValue);
-                    jsonGenerator.writeObjectField(propertyName, userInfoEntity);
+//                    UserInfoEntity userInfoEntity = userService.getUserInfoByIDCache(fieldValue);
+//                    jsonGenerator.writeObjectField(propertyName, userInfoEntity);
                 }
                 jsonGenerator.writeEndObject();
             } catch (Exception ignored) {

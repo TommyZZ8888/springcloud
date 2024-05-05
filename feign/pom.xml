@@ -12,13 +12,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>feign</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.zz.software</groupId>
-            <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>

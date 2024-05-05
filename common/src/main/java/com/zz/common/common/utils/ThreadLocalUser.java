@@ -1,7 +1,7 @@
 package com.zz.common.common.utils;
 
 
-import com.zz.common.module.identity.user.domain.entity.UserInfoEntity;
+import com.zz.common.common.core.domain.UserInfoEntity;
 
 public class ThreadLocalUser {
 

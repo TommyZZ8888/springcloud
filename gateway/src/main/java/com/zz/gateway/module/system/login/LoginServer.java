@@ -1,9 +1,10 @@
-package com.zz.common.module.system.login;
+package com.zz.gateway.module.system.login;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+
+import com.zz.common.common.core.domain.UserInfoEntity;
 import com.zz.common.common.exception.ErrorException;
-import com.zz.common.module.identity.user.domain.entity.UserInfoEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class LoginServer {
         }
         //调试用，打印出来
         UserInfoEntity userInfo = new UserInfoEntity();
-        userInfo.setUserId(id);
+//        userInfo.setUserId(id);
         return userInfo;
     }
 }

@@ -67,3 +67,10 @@ spring:
             web:
                 exposure:
                     include: "*"
+swagger:
+    title: 测试界面
+    version: 1.0.0
+    license: Apache 2.0
+    basePackage: com.zz.gateway
+    contactName: jiadong.GUO
+    enabled: true
