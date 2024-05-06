@@ -1,6 +1,7 @@
 package com.zz.test.module.test.controller;
 
 
+import com.zz.feign.test7003.Test7003Service;
 import com.zz.test.module.test.domain.dto.UserDTO;
 import com.zz.test.module.test.holder.LoginUserHolder;
 import com.zz.test.module.test.mapper.TestMapper;
@@ -32,6 +33,9 @@ public class TestController {
     @Autowired
     private LoginUserHolder loginUserHolder;
 
+    @Autowired
+    private Test7003Service test7003Service;
+
     @GetMapping("/hello")
     public String hello() {
         return "hello";
@@ -39,6 +43,11 @@ public class TestController {
     @GetMapping("/currentUser")
     public UserDTO currentUser() {
         return loginUserHolder.getCurrentUser();
+    }
+
+    @GetMapping("/feignTest7003")
+    public String feignTest7003() {
+        return test7003Service.get();
     }
 
 

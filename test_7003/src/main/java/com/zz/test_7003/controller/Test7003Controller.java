@@ -24,7 +24,6 @@ public class Test7003Controller  {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login() {
-
         return "test7003";
     }
 

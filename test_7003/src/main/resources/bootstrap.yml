@@ -3,12 +3,18 @@ server:
 spring:
     application:
         name: test7003
+    table: test
     profiles:
-        active: nacos
         include: common
 user:
     name: zhangsan
     age: 19
 
-
+swagger:
+    title: 测试界面
+    version: 1.0.0
+    license: Apache 2.0
+    basePackage: com.zz.gateway
+    contactName: jiadong.GUO
+    enabled: true
 

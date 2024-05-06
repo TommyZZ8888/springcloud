@@ -66,6 +66,8 @@ spring:
                 uri: lb://test7003
                 predicates:
                   - Path=/test7003/**
+                filters:
+                  - StripPrefix=1
         nacos:
             discovery:
                 server-addr: ${spring.cloud.nacos.server-addr}
