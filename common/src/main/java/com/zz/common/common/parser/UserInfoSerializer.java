@@ -7,7 +7,7 @@ import com.zz.common.common.annotation.EnableUserInfo;
 import com.zz.common.common.annotation.UserInfo;
 import com.zz.common.common.core.domain.UserInfoEntity;
 import com.zz.common.common.utils.ApplicationContextUtils;
-import com.zz.feign.test.TestService;
+//import com.zz.feign.test.FeignTestService;
 
 
 import java.lang.reflect.Field;
@@ -16,11 +16,11 @@ public class UserInfoSerializer {
 
     public static class JacksonSerializer extends JsonSerializer<Object> {
 
-        private TestService userService;
-
-        public JacksonSerializer() {
-            userService = ApplicationContextUtils.getBean(TestService.class);
-        }
+//        private FeignTestService userService;
+//
+//        public JacksonSerializer() {
+//            userService = ApplicationContextUtils.getBean(FeignTestService.class);
+//        }
 
         @Override
         public void serialize(Object object, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) {

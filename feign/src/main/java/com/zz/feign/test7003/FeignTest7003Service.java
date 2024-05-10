@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("feignTest7003Service")
 @EnableFeignClients
-public class Test7003Service {
+public class FeignTest7003Service {
 
     @Autowired
     private Test7003Feign test7003Feign;

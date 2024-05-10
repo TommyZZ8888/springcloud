@@ -2,8 +2,6 @@ package com.zz.test7004.controller;
 
 import com.zz.common.common.annotation.NoNeedLogin;
 import com.zz.common.common.annotation.OperateLog;
-import com.zz.feign.test.TestService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test7004Controller {
 
 
-    @Autowired
-    private TestService testService;
+
 
     @Value("${user.name}")
     private String name;
@@ -33,10 +30,5 @@ public class Test7004Controller {
     }
 
 
-    @RequestMapping(value = "/loginFeignTest")
-    public String loginFeign() {
-        String msg = testService.get();
-        System.out.println(msg);
-        return msg;
-    }
+
 }

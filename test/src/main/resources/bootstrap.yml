@@ -2,6 +2,8 @@ server:
     port: 7002
 
 spring:
+    profiles:
+        include: common
     main:
         allow-bean-definition-overriding: true
     table: test

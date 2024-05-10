@@ -1,21 +1,17 @@
 package com.zz.test.module.test.controller;
 
 
-import com.zz.feign.test7003.Test7003Service;
+import com.zz.feign.test7003.FeignTest7003Service;
 import com.zz.test.module.test.domain.dto.UserDTO;
 import com.zz.test.module.test.holder.LoginUserHolder;
 import com.zz.test.module.test.mapper.TestMapper;
-import com.zz.test.module.test.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping
@@ -27,14 +23,12 @@ public class TestController {
     @Autowired
     private TestMapper testMapper;
 
-    @Autowired
-    private TestService testService;
 
     @Autowired
     private LoginUserHolder loginUserHolder;
 
     @Autowired
-    private Test7003Service test7003Service;
+    private FeignTest7003Service test7003Service;
 
     @GetMapping("/hello")
     public String hello() {
@@ -67,9 +61,4 @@ public class TestController {
         return msg;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update() {
-       testService.update();
-       return "ok";
-    }
 }
