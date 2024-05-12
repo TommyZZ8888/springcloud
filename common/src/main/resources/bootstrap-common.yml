@@ -62,8 +62,11 @@ spring:
                     -   data-id: common.yaml    #nacos界面dataid要加yaml后缀，不然识别不到
                         group: springcloud
                         refresh: true
-
             server-addr: 127.0.0.1:8848
+        sentinel:
+          transport:
+              port: 8719
+              dashboard: localhost:8080
 #mybatis:
 #    type-aliases-package: com.zz.*.module.**.domain.entity
 #    mapper-locations: classpath*:mapper/**/*Mapper.xml
