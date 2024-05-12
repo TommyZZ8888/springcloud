@@ -1,0 +1,106 @@
+server:
+    port: 7001
+spring:
+    application:
+        name: gateway
+    main:
+        allow-bean-definition-overriding: true
+        web-application-type: reactive
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 50MB
+
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        database: 0
+    freemarker:
+        cache: false
+
+    #druid
+    datasource:
+        druid:
+            username: root
+            password: 123456
+            url: jdbc:mysql://127.0.0.1/test?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            max-active: 20
+            initial-size: 10
+            min-idle: 5
+            max-wait: 60000
+            pool-prepared-statements: true
+            validation-query: SELECT 1
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            max-pool-prepared-statement-per-connection-size: 20
+            use-global-data-source-stat: true
+            filters: stat
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 2000
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                reset-enable: true
+                login-username: root
+                login-password: root
+    cloud:
+        gateway:
+            routes:
+                - id: test
+                  uri: lb://test
+                  predicates:
+                      - Path=/test/**
+                  filters:
+                      - StripPrefix=1
+                - id: auth
+                  uri: lb://auth
+                  predicates:
+                      - Path=/auth/**
+                  filters:
+                      - StripPrefix=1
+                - id: test7003
+                  uri: lb://test7003
+                  predicates:
+                      - Path=/api/test7003/**
+        nacos:
+            discovery:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                group: ${spring.cloud.nacos.config.group-name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+            config:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                file-extension: yaml
+                group: springcloud
+                prefix: ${spring.application.name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+                refresh-enabled: true
+                enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+            server-addr: 127.0.0.1:8848
+
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: http://127.0.0.1:9999/rsa/publicKey
+
+user:
+    name: zhangsan
+    age: 19
+#swagger 配置
+
+swagger:
+    title: 测试界面
+    version: 1.0.0
+    license: Apache 2.0
+    basePackage: com.zz.gateway
+    contactName: jiadong.GUO
+    enabled: true
+secure:
+    ignore:
+        urls:
+            - /auth/oauth/token

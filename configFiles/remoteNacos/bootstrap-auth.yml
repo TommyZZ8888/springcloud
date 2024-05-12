@@ -7,9 +7,9 @@ spring:
     table: test
     application:
         name: auth
-#    devtools:
-#        restart:
-#            enabled: true   # 热部署
+    devtools:
+        restart:
+            enabled: true   # 热部署
     datasource:
         druid:
             #数据库地址   172.16.25.234 是mysql服务地址 newwms是数据库名称
@@ -52,6 +52,9 @@ spring:
                 namespace: 100513ae-388a-43c2-a181-7fbb37a80a21
                 refresh-enabled: true # 动态刷新
                 enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
     redis:

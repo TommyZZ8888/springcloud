@@ -1,0 +1,94 @@
+spring:
+    main:
+        allow-bean-definition-overriding: true
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 50MB
+#    #redis配置
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        database: 0
+    freemarker:
+        cache: false #不加载缓存
+
+    #druid
+    datasource:
+        druid:
+            #数据库地址   172.16.25.234 是mysql服务地址 newwms是数据库名称
+            username: root
+            password: 123456
+            url: jdbc:mysql://127.0.0.1/${spring.table}?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            max-active: 20
+            initial-size: 10
+            min-idle: 5
+            max-wait: 60000
+            pool-prepared-statements: true
+            validation-query: SELECT 1
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            max-pool-prepared-statement-per-connection-size: 20
+            use-global-data-source-stat: true
+            filters: stat
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 2000
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                reset-enable: true
+                login-username: root
+                login-password: root
+    cloud:
+        nacos:
+            discovery:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                group: ${spring.cloud.nacos.config.group-name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+            config:
+                server-addr: ${spring.cloud.nacos.server-addr}
+                file-extension: yaml  # 必须修改成yaml
+                group: springcloud
+                prefix: ${spring.application.name}
+                namespace: ${spring.cloud.nacos.config.namespace-name}
+                refresh-enabled: true # 动态刷新
+                enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+                shared-configs: # 共享配置
+                    -   data-id: common.yaml    #nacos界面dataid要加yaml后缀，不然识别不到
+                        group: springcloud
+                        refresh: true
+
+            server-addr: 127.0.0.1:8848
+#mybatis:
+#    type-aliases-package: com.zz.*.module.**.domain.entity
+#    mapper-locations: classpath*:mapper/**/*Mapper.xml
+#    config-location: classpath:mybatis/mybatis-config.xml
+#    type-handlers-package: com.zz.common.common.handler
+mybatis-plus:
+    type-aliases-package: com.zz.*.module.**.domain.entity
+    mapper-locations: classpath:mapper/**/*Mapper.xml
+    config-location: classpath:mybatis/mybatis-config.xml
+    type-handlers-package: com.zz.common.common.handler
+    global-config:
+        db-config:
+            logic-delete-field: isDeleted
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+pagehelper:
+    helper-dialect: mysql
+    params: count=countSql
+logging:
+    level:
+        com.zz: debug
+system:
+    gatewayUrl: http://127.0.0.1:7001
+feign:
+    circuitbreaker:
+        enabled: true
+
+

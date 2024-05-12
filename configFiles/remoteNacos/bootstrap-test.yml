@@ -1,15 +1,15 @@
 server:
-    port: 9999
+    port: 7002
 
 spring:
     main:
         allow-bean-definition-overriding: true
     table: test
     application:
-        name: auth
-#    devtools:
-#        restart:
-#            enabled: true   # 热部署
+        name: test
+    devtools:
+        restart:
+            enabled: true
     datasource:
         druid:
             #数据库地址   172.16.25.234 是mysql服务地址 newwms是数据库名称
@@ -46,12 +46,15 @@ spring:
                 namespace: 100513ae-388a-43c2-a181-7fbb37a80a21
             config:
                 server-addr: 127.0.0.1:8848
-                file-extension: yaml  # 必须修改成yaml
+                file-extension: yaml
                 group: springcloud
                 prefix: ${spring.application.name}
                 namespace: 100513ae-388a-43c2-a181-7fbb37a80a21
-                refresh-enabled: true # 动态刷新
+                refresh-enabled: true
                 enable-remote-sync-config: true
+                group-name: springcloud
+                namespace-name: 100513ae-388a-43c2-a181-7fbb37a80a21
+
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
     redis:

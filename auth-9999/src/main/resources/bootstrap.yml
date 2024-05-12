@@ -7,9 +7,9 @@ spring:
     table: test
     application:
         name: auth
-    devtools:
-        restart:
-            enabled: true   # 热部署
+#    devtools:
+#        restart:
+#            enabled: true   # 热部署
     datasource:
         druid:
             #数据库地址   172.16.25.234 是mysql服务地址 newwms是数据库名称
